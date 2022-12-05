@@ -1,0 +1,20 @@
+url: 'localhost:8080'
+
+endpoints:
+  -
+    endpoint: "get/info"
+    method: "GET"
+    enabled: true
+    code: 200
+    type: 'transformer'
+    transform:
+      output: 'plain'
+  -
+    endpoint: "get/info"
+    method: "GET"
+    enabled: true
+    code: 500
+    type: 'response'
+    body:
+      type: "json"
+      content: "false"
