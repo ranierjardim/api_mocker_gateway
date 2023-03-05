@@ -8,7 +8,7 @@
 PRODUCT_NAME = api_mocker_gateway
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.ranierjardim.amg.apiMockerGateway
+PRODUCT_BUNDLE_IDENTIFIER = com.ranierjardim.amg
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2023 com.ranierjardim.amg. All rights reserved.
