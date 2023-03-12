@@ -55,12 +55,7 @@ workflows:
           # Create an unsigned package
           xcrun productbuild --component "$APP_NAME" /Applications/ unsigned.pkg
           # Find the installer certificate commmon name in keychain
-          INSTALLER_CERT_NAME=$(keychain list-certificates \
-            | jq '.[]
-            | select(.common_name
-            | contains("Codemagic CI"))
-            | .common_name' \
-            | xargs)
+          INSTALLER_CERT_NAME=$(keychain list-certificates)
           # Sign the package
           xcrun productsign --sign "$INSTALLER_CERT_NAME" unsigned.pkg "$PACKAGE_NAME"
     artifacts:
