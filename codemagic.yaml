@@ -24,8 +24,8 @@ workflows:
             --create
       - name: Fetch Mac Installer Distribution certificates
         script: |
-          app-store-connect list-certificates --type MAC_APP_DISTRIBUTION --save || \
-          app-store-connect create-certificate --type MAC_APP_DISTRIBUTION --save
+          app-store-connect list-certificates --type MAC_INSTALLER_DISTRIBUTION --save || \
+          app-store-connect create-certificate --type MAC_INSTALLER_DISTRIBUTION --save
       - name: Set up signing certificate
         script: |
           keychain add-certificates
@@ -43,7 +43,6 @@ workflows:
           find . -name "Podfile" -execdir pod install \;
       - name: Build Flutter macOS
         script: |
-          flutter config --enable-macos-desktop && \
           flutter build macos --release
       - name: Package macOS application
         script: |
@@ -55,7 +54,12 @@ workflows:
           # Create an unsigned package
           xcrun productbuild --component "$APP_NAME" /Applications/ unsigned.pkg
           # Find the installer certificate commmon name in keychain
-          INSTALLER_CERT_NAME=$(keychain list-certificates)
+          INSTALLER_CERT_NAME=$(keychain list-certificates \
+            | jq '.[]
+            | select(.common_name
+            | contains("Apple Distribution"))
+            | .common_name' \
+            | xargs)
           # Sign the package
           xcrun productsign --sign "$INSTALLER_CERT_NAME" unsigned.pkg "$PACKAGE_NAME"
     artifacts:
