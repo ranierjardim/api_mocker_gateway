@@ -9,6 +9,7 @@ workflows:
       cocoapods: default
       groups:
         - RANIERJARDIM_APP_STORE_CREDENTIALS
+        - GENERAL
     scripts:
       - name: Set up keychain to be used for codesigning using Codemagic CLI 'keychain' command
         script: |
@@ -42,9 +43,7 @@ workflows:
       - name: Build Flutter macOS
         script: |
           flutter config --enable-macos-desktop && \
-          flutter build macos --release \
-            --build-name=1.0.$PROJECT_BUILD_NUMBER \
-            --build-number=$PROJECT_BUILD_NUMBER
+          flutter build macos --release
       - name: Package macOS application
         script: |
           set -x
