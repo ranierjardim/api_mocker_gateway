@@ -11,7 +11,6 @@ workflows:
       xcode: latest
       cocoapods: default
       groups:
-        - RANIERJARDIM_APP_STORE_CREDENTIALS
         - GENERAL
     scripts:
       - name: Set up keychain to be used for codesigning using Codemagic CLI 'keychain' command
@@ -21,7 +20,8 @@ workflows:
         script: |
           app-store-connect fetch-signing-files \
             $BUNDLE_ID \
-            --platform MAC_OS \
+            --platform UNIVERSAL \
+            --certificate-key=$CERTIFICATE_PRIVATE_KEY \
             --type MAC_APP_STORE \
             --create
       - name: Fetch Mac Installer Distribution certificates
