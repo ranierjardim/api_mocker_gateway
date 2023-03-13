@@ -6,27 +6,24 @@ workflows:
     max_build_duration: 5
     environment:
       groups:
-        - MICROSOFT_STORE_CREDENTIALS # <-- (Includes PARTNER_CLIENT_SECRET)
+        - MICROSOFT_STORE_CREDENTIALS
       flutter: 3.7.6
     scripts:
       - name: Get Flutter packages
         script: flutter packages pub get
-      - name: Build Windows
-        script: flutter build windows
       - name: Package Windows
         script: flutter pub run msix:create
     artifacts:
       - build/windows/**/*.msix
     publishing:
       partner_center:
-        store_id: $STORE_ID # <-- You can find the `store_id` inside your Partner Center app by going to [Product management > Product Identity].
-        tenant_id: $TENANT_ID # <-- You will get `tenant_id` from the Azure AD Overview page.
-        client_id: $CLIENT_ID # <-- You will also get `client_id` from the Azure AD Overview page.
-        client_secret: $PARTNER_CLIENT_SECRET # <-- `client_secret` is retrieved from the application environment variable
+        store_id: 9NVD2K8CB7RG
+        tenant_id: $TENANT_ID
+        client_id: $CLIENT_ID
+        client_secret: $PARTNER_CLIENT_SECRET
       email:
         recipients:
-          - user_1@example.com
-          - user_2@example.com
+          - ranierjardim@gmail.com
         notify:
           success: true
           failure: true
