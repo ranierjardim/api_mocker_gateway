@@ -21,7 +21,6 @@ workflows:
           app-store-connect fetch-signing-files \
             $BUNDLE_ID \
             --platform UNIVERSAL \
-            --certificate-key=$CERTIFICATE_PRIVATE_KEY \
             --type MAC_APP_STORE \
             --create
       - name: Fetch Mac Installer Distribution certificates
