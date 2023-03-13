@@ -64,7 +64,7 @@ workflows:
             | .common_name' \
             | xargs)
           # Sign the package
-          xcrun productsign --sign "$INSTALLER_CERT_NAME" unsigned.pkg "$PACKAGE_NAME"
+          # xcrun productsign --sign "$INSTALLER_CERT_NAME" unsigned.pkg "$PACKAGE_NAME"
     artifacts:
       - build/macos/**/*.pkg
     publishing:
@@ -74,3 +74,7 @@ workflows:
         notify:
           success: true
           failure: true
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+        submit_to_app_store: false
