@@ -29,7 +29,7 @@ workflows:
           - user_2@example.com
         notify:
           success: true
-          failure: false
+          failure: true
 
   macOS-workflow:
     name: macOS Workflow
