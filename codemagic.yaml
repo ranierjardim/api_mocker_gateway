@@ -60,11 +60,11 @@ workflows:
           INSTALLER_CERT_NAME=$(keychain list-certificates \
             | jq '.[]
             | select(.common_name
-            | contains("Mac Developer Installer"))
+            | contains("Apple Distribution"))
             | .common_name' \
             | xargs)
           # Sign the package
-          # xcrun productsign --sign "$INSTALLER_CERT_NAME" unsigned.pkg "$PACKAGE_NAME"
+          xcrun productsign --sign "$INSTALLER_CERT_NAME" unsigned.pkg "$PACKAGE_NAME"
     artifacts:
       - build/macos/**/*.pkg
     publishing:
