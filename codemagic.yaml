@@ -22,7 +22,8 @@ workflows:
             $BUNDLE_ID \
             --platform MAC_OS \
             --type MAC_APP_STORE \
-            --create
+            --create \
+            --save
       - name: Fetch Mac Installer Distribution certificates
         script: |
           app-store-connect list-certificates --type MAC_INSTALLER_DISTRIBUTION --save || \
