@@ -58,7 +58,7 @@ workflows:
           INSTALLER_CERT_NAME=$(keychain list-certificates \
             | jq '.[]
             | select(.common_name
-            | contains("Apple Distribution"))
+            | contains("Mac Developer Installer"))
             | .common_name' \
             | xargs)
           # Sign the package
