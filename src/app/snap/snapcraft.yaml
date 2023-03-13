@@ -1,0 +1,67 @@
+name: api-mocker-gateway # you probably want to 'snapcraft register <name>'
+version: '0.1' # just for humans, typically '1.2+git' or '1.3.2'
+summary: A REST API mocker for any app # 79 char long summary
+description: |
+  A REST API mocker for any app
+
+confinement: strict
+base: core18
+grade: stable
+architectures:
+  - build-on: [ amd64 ]
+  - build-on: [ arm64 ]
+
+slots:
+  dbus-api-mocker-gateway:
+    interface: dbus
+    bus: session
+    name: com.ranierjardim.amg
+
+apps:
+  api-mocker-gateway:
+    plugs: &plugs
+      - alsa
+      - audio-playback
+      - audio-record
+      - avahi-control
+      - browser-support
+      - camera
+      - desktop
+      - desktop-legacy
+      - gsettings
+      - home
+      - hardware-observe
+      - jack1
+      - joystick
+      - kernel-module-observe
+      - network
+      - network-bind
+      - opengl
+      - password-manager-service
+      - process-control
+      - pulseaudio
+      - raw-usb
+      - removable-media
+      - screen-inhibit-control
+      - screencast-legacy
+      - system-observe
+      - unity7
+      - upower-observe
+      - wayland
+      - x11
+    slots:
+      - dbus-api-mocker-gateway
+    command: api_mocker_gateway
+    extensions: [flutter-master]
+
+parts:
+  # Integrate custom dialogs in your snap - doc - snapcraft.io
+  # https://forum.snapcraft.io/t/integrate-custom-dialogs-in-your-snap/10825
+  zenity-integration:
+    plugin: nil
+    stage-snaps:
+      - zenity-integration
+  api-mocker-gateway:
+    source: .
+    plugin: flutter
+    flutter-target: lib/main.dart # The main entry-point file of the application

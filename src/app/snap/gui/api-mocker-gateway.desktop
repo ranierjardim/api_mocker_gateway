@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=API Mocker Gateway
+Comment=A REST API mocker for any app!
+Icon=${SNAP}/meta/gui/icon.png
+Exec=api-mocker-gateway %U
+Terminal=false
+Type=Application
+Categories=Development;
+Keywords=mocker;
+StartupNotify=false
