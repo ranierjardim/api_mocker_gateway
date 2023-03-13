@@ -1,4 +1,28 @@
 workflows:
+  snapcraft-release:
+    name: Snapcraft Release
+    working_directory: src/app
+    instance_type: linux
+    max_build_duration: 5
+    environment:
+      groups:
+        - SNAP_CRED
+      flutter: 3.7.6
+      vars:
+        # Snapcraft publishing
+        # 1. Use `snapcraft export-login snapcraft-login-credentials` command to generate your login credentials file
+        # 2. Encrypt your credentials file in Codemagic App settings UI
+        # 3. Add credentials in enctypted form to SNAPCRAFT_LOGIN_CREDENTIALS envrionment variable as shown below
+        SNAPCRAFT_BUILD_ENVIRONMENT: host
+    scripts:
+      - name: Authenticate
+        script: |
+          echo $SNAPCRAFT_LOGIN_CREDENTIALS | base64 --decode > /home/builder/snapcraft-login-credentials
+          snapcraft login --with /home/builder/snapcraft-login-credentials
+      - name: Create a snap
+        script: snapcraft snap --output flutter-codemagic-example.snap
+      - name: Upload and release
+        script: snapcraft upload flutter-codemagic-example.snap --release stable
   Windows-workflow:
     name: Windows release workflow
     working_directory: src/app
@@ -27,7 +51,6 @@ workflows:
         notify:
           success: true
           failure: true
-
   macOS-workflow:
     name: macOS Workflow
     working_directory: src/app
