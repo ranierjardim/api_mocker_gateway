@@ -63,7 +63,7 @@ workflows:
             | .common_name' \
             | xargs)
           # Sign the package
-          codesign --deep -s "$INSTALLER_CERT_NAME" unsigned.pkg
+          xcrun productsign --sign "$INSTALLER_CERT_NAME" unsigned.pkg "$PACKAGE_NAME"
     artifacts:
       - build/macos/**/*.pkg
     publishing:
