@@ -101,5 +101,5 @@ msix_config:
   msix_version: 1.0.1.0
   store: true
   publisher: CN=D50ABDC9-4740-40BB-9575-588CF45EF547
-  logo_path: C:\Users\ranie\FlutterApps\api_mocker_gateway\windows\runner\resources\app_icon.ico
+  logo_path: ./windows/runner/resources/app_icon.ico
   capabilities: internetClientServer, removableStorage
