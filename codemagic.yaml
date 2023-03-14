@@ -8,12 +8,15 @@ workflows:
       groups:
         - SNAP_CRED
       flutter: 3.7.6
-      snapcraft: 7.1.4
       vars:
         SNAPCRAFT_BUILD_ENVIRONMENT: host
     scripts:
+      - name: Downgrade snapcraft version
+        script: |
+          snap install snap/snapcraft_7.1.4_amd64.snap --dangerous --classic
       - name: Authenticate with Snap Store
         script: | 
+          snapcraft -V
           snapcraft login
       - name: Create a snap
         script: snapcraft snap --output flutter-codemagic-example.snap
