@@ -16,8 +16,10 @@ workflows:
           sudo snap install snap/snapcraft_7.1.4_amd64.snap --dangerous --classic
       - name: Authenticate with Snap Store
         script: | 
+          echo $SNAPCRAFT_LOGIN_CREDENTIALS
           snapcraft -V
-          snapcraft login
+          echo $SNAPCRAFT_LOGIN_CREDENTIALS > /home/builder/snapcraft-login-credentials
+          snapcraft login --with /home/builder/snapcraft-login-credentials
       - name: Create a snap
         script: snapcraft snap --output flutter-codemagic-example.snap
       - name: Upload and release
