@@ -13,7 +13,7 @@ workflows:
     scripts:
       - name: Downgrade snapcraft version
         script: |
-          snap install snap/snapcraft_7.1.4_amd64.snap --dangerous --classic
+          sudo snap install snap/snapcraft_7.1.4_amd64.snap --dangerous --classic
       - name: Authenticate with Snap Store
         script: | 
           snapcraft -V
