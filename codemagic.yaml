@@ -16,14 +16,14 @@ workflows:
           sudo snap install snap/snapcraft_7.1.4_amd64.snap --dangerous --classic
       - name: Authenticate with Snap Store
         script: | 
-          echo $SNAPCRAFT_LOGIN_CREDENTIALS
+          echo $SNAPCRAFT_EMAIL_CREDENTIAL
+          echo $SNAPCRAFT_PASSWORD_CREDENTIAL
           snapcraft -V
-          echo $SNAPCRAFT_LOGIN_CREDENTIALS > /home/builder/snapcraft-login-credentials
-          snapcraft login --with /home/builder/snapcraft-login-credentials
+          snapcraft login --email $SNAPCRAFT_EMAIL_CREDENTIAL --password $SNAPCRAFT_PASSWORD_CREDENTIAL
       - name: Create a snap
-        script: snapcraft snap --output flutter-codemagic-example.snap
+        script: snapcraft snap --output api-mocker-gateway.snap
       - name: Upload and release
-        script: snapcraft upload flutter-codemagic-example.snap --release stable
+        script: snapcraft upload api-mocker-gateway.snap --release stable
   Windows-workflow:
     name: Windows release workflow
     working_directory: src/app
