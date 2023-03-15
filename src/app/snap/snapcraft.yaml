@@ -11,12 +11,6 @@ architectures:
   - build-on: [ amd64 ]
   - build-on: [ arm64 ]
 
-slots:
-  dbus-api-mocker-gateway:
-    interface: dbus
-    bus: session
-    name: com.ranierjardim.amg
-
 apps:
   api-mocker-gateway:
     plugs:
@@ -30,8 +24,6 @@ apps:
       - opengl
       - wayland
       - x11
-    slots:
-      - dbus-api-mocker-gateway
     command: api_mocker_gateway
     extensions: [flutter-stable]
 
