@@ -19,40 +19,17 @@ slots:
 
 apps:
   api-mocker-gateway:
-    plugs: &plugs
-      - alsa
-      - audio-playback
-      - audio-record
-      - avahi-control
-      - browser-support
-      - camera
+    plugs:
       - desktop
       - desktop-legacy
-      - gsettings
       - home
-      - hardware-observe
-      - jack1
-      - joystick
-      - kernel-module-observe
       - network
       - network-bind
-      - opengl
-      - password-manager-service
-      - process-control
-      - pulseaudio
-      - raw-usb
       - removable-media
-      - screen-inhibit-control
-      - screencast-legacy
-      - system-observe
-      - unity7
-      - upower-observe
-      - wayland
-      - x11
     slots:
       - dbus-api-mocker-gateway
     command: api_mocker_gateway
-    extensions: [flutter-master]
+    extensions: [flutter-3.7.6]
 
 parts:
   # Integrate custom dialogs in your snap - doc - snapcraft.io
@@ -64,5 +41,4 @@ parts:
   api-mocker-gateway:
     source: .
     plugin: flutter
-    flutter-revision: 3.7.6
     flutter-target: lib/main.dart # The main entry-point file of the application
