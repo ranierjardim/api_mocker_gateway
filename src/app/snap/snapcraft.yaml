@@ -26,10 +26,14 @@ apps:
       - network
       - network-bind
       - removable-media
+      - gsettings
+      - opengl
+      - wayland
+      - x11
     slots:
       - dbus-api-mocker-gateway
     command: api_mocker_gateway
-    extensions: [flutter-3.7.6]
+    extensions: [flutter-stable]
 
 parts:
   # Integrate custom dialogs in your snap - doc - snapcraft.io
