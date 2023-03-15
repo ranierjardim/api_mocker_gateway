@@ -64,4 +64,5 @@ parts:
   api-mocker-gateway:
     source: .
     plugin: flutter
+    flutter-revision: 3.7.6
     flutter-target: lib/main.dart # The main entry-point file of the application
