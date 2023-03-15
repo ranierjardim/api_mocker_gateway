@@ -11,6 +11,11 @@ workflows:
       vars:
         SNAPCRAFT_BUILD_ENVIRONMENT: host
     scripts:
+      - name: Setup keyring
+        script: |
+          sudo apt install gnome-keyring
+          sudo dbus-run-session -- sh
+          echo "asd" | gnome-keyring-daemon --unlock
       - name: Downgrade snapcraft version
         script: |
           sudo snap install codemagic_dependencies/modded_snapcraft_7.3.1_amd64.snap --dangerous --classic
