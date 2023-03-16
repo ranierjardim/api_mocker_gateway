@@ -33,9 +33,6 @@ workflows:
         script: flutter packages pub get
       - name: Package Windows
         script: |
-          echo $TENANT_ID
-          echo $CLIENT_ID
-          echo $PARTNER_CLIENT_SECRET
           flutter pub run msix:create
     artifacts:
       - build/windows/**/*.msix
@@ -62,8 +59,6 @@ workflows:
       flutter: 3.7.6
       xcode: latest
       cocoapods: default
-      groups:
-        - GENERAL
     scripts:
       - name: Set up keychain to be used for codesigning using Codemagic CLI 'keychain' command
         script: |
@@ -71,7 +66,7 @@ workflows:
       - name: Fetch Mac App Distribution certificate and Mac App Store profile
         script: |
           app-store-connect fetch-signing-files \
-            $BUNDLE_ID \
+            com.ranierjardim.amg \
             --platform MAC_OS \
             --type MAC_APP_STORE \
             --create
