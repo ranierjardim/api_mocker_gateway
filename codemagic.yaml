@@ -5,7 +5,7 @@ workflows:
     instance_type: linux
     max_build_duration: 15
     labels:
-      - Public release
+      - PUBLIC_RELEASE
     triggering:
       events:
         - tag
@@ -40,7 +40,7 @@ workflows:
     instance_type: windows_x2
     max_build_duration: 15
     labels:
-      - Public release
+      - PUBLIC_RELEASE
     triggering:
       events:
         - tag
@@ -83,7 +83,7 @@ workflows:
     instance_type: mac_mini_m1
     max_build_duration: 15
     labels:
-      - Public release
+      - PUBLIC_RELEASE
     triggering:
       events:
         - tag
