@@ -47,10 +47,10 @@ workflows:
     scripts:
       - name: Prepare build version
         script: |
+          $CM_TAG = [System.Environment]::GetEnvironmentVariable('CM_TAG')
           echo "CM_TAG: $CM_TAG"
           $APP_VERSION = $CM_TAG -replace '-release|-windows',''
           echo "APP_VERSION: $APP_VERSION"
-          gci env:* | sort-object name
       - name: Get Flutter packages
         script: flutter packages pub get
       - name: Package Windows
@@ -60,7 +60,7 @@ workflows:
       - build/windows/**/*.msix
     publishing:
       partner_center:
-        store_id: 9NVD2K8CB7RG
+        store_id: $STORE_ID
         tenant_id: $TENANT_ID
         client_id: $CLIENT_ID
         client_secret: $PARTNER_CLIENT_SECRET
