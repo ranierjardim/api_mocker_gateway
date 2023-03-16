@@ -100,6 +100,7 @@ msix_config:
   identity_name: 53419RanierJardim.APIMockerGateway
   msix_version: 1.0.1.0
   store: true
+  execution_alias: api-mocker-gateway
   publisher: CN=D50ABDC9-4740-40BB-9575-588CF45EF547
   logo_path: ./windows/runner/resources/app_icon.ico
   capabilities: internetClientServer, removableStorage
