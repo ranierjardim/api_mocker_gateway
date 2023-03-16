@@ -98,6 +98,8 @@ workflows:
       flutter: 3.7.6
       xcode: latest
       cocoapods: default
+      groups:
+        - APP_STORE_APP_INFO
     scripts:
       - name: Set up keychain to be used for codesigning using Codemagic CLI 'keychain' command
         script: |
