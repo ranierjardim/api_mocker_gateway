@@ -129,7 +129,7 @@ workflows:
           find . -name "Podfile" -execdir pod install \;
       - name: Build Flutter macOS
         script: |
-          export APP_VERSION=$(echo $CM_TAG | sed "s/-release\|-mac//g")
+          export APP_VERSION=`echo "$CM_TAG" | sed 's/-release//g; s/-mac//g'`
           flutter build macos --release --build-name=$APP_VERSION --build-number=0
       - name: Package macOS application
         script: |
