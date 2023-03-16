@@ -50,7 +50,7 @@ workflows:
       - name: Package Windows
         script: |
           $APP_VERSION = $CM_TAG -replace '-release|-windows',''
-          flutter pub run msix:create --version $APP_VERSION.0
+          flutter pub run msix:create --version "$APP_VERSION.0"
     artifacts:
       - build/windows/**/*.msix
     publishing:
