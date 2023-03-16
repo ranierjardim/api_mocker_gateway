@@ -4,6 +4,14 @@ workflows:
     working_directory: src/app
     instance_type: linux
     max_build_duration: 5
+    triggering:
+      events:
+        - tag
+      tag_patterns:
+        - pattern: '*-release'
+          include: true
+        - pattern: '*-linux'
+          include: true
     environment:
       groups:
         - SNAP_CRED
@@ -24,6 +32,14 @@ workflows:
     working_directory: src/app
     instance_type: windows_x2
     max_build_duration: 5
+    triggering:
+      events:
+        - tag
+      tag_patterns:
+        - pattern: '*-release'
+          include: true
+        - pattern: '*-windows'
+          include: true
     environment:
       groups:
         - MICROSOFT_STORE_CREDENTIALS
@@ -33,7 +49,8 @@ workflows:
         script: flutter packages pub get
       - name: Package Windows
         script: |
-          flutter pub run msix:create
+          $APP_VERSION = $CM_TAG -replace '-release|-windows',''
+          flutter pub run msix:create --version $APP_VERSION.0
     artifacts:
       - build/windows/**/*.msix
     publishing:
@@ -53,6 +70,14 @@ workflows:
     working_directory: src/app
     instance_type: mac_mini_m1
     max_build_duration: 5
+    triggering:
+      events:
+        - tag
+      tag_patterns:
+        - pattern: '*-release'
+          include: true
+        - pattern: '*-mac'
+          include: true
     integrations:
       app_store_connect: Codemagic CI
     environment:
