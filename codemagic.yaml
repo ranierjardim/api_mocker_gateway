@@ -1,6 +1,6 @@
 workflows:
-  snapcraft-release:
-    name: Snapcraft Release
+  Linux-release:
+    name: Linux Snapcraft Release
     working_directory: src/app
     instance_type: linux
     max_build_duration: 5
@@ -20,7 +20,7 @@ workflows:
       - name: Upload and release
         script: snapcraft upload api-mocker-gateway.snap --release stable
   Windows-workflow:
-    name: Windows release workflow
+    name: Windows MS Store Release
     working_directory: src/app
     instance_type: windows_x2
     max_build_duration: 5
@@ -30,7 +30,11 @@ workflows:
       flutter: 3.7.6
     scripts:
       - name: Package Windows
-        script: flutter pub run msix:create
+        script: |
+          echo $TENANT_ID
+          echo $CLIENT_ID
+          echo $PARTNER_CLIENT_SECRET
+          flutter pub run msix:create
     artifacts:
       - build/windows/**/*.msix
     publishing:
@@ -46,7 +50,7 @@ workflows:
           success: true
           failure: true
   macOS-workflow:
-    name: macOS Workflow
+    name: macOS App Store Workflow
     working_directory: src/app
     instance_type: mac_mini_m1
     max_build_duration: 5
