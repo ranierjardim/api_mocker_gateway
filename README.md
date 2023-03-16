@@ -19,6 +19,6 @@
 
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/api-mocker-gateway)
 
-<a href="ms-windows-store://pdp/?productid=9NVD2K8CB7RG&cid=&mode=mini">
+<a href="https://www.microsoft.com/store/apps/9NVD2K8CB7RG">
 	<img src="https://get.microsoft.com/images/en-US%20dark.svg"/>
 </a>

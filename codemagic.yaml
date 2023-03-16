@@ -102,7 +102,7 @@ workflows:
       - name: Fetch Mac App Distribution certificate and Mac App Store profile
         script: |
           app-store-connect fetch-signing-files \
-            com.ranierjardim.amg \
+            "com.ranierjardim.amg" \
             --platform MAC_OS \
             --type MAC_APP_STORE \
             --create
