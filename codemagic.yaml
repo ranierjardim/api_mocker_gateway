@@ -23,14 +23,15 @@ workflows:
     scripts:
       - name: Authenticate with Snap Store
         script: |
+          echo $SNAPCRAFT_LOGIN_CREDENTIALS | base64 --decode > /home/builder/snapcraft-login-credentials
+          snapcraft login --with /home/builder/snapcraft-login-credentials
+      - name: Create a snap
+        script: |
           export APP_VERSION=$(echo $CM_TAG | sed "s/-release\|-linux//g")
           echo "CM_TAG: $CM_TAG"
           echo "APP_VERSION: $APP_VERSION"
           export APP_GRADE="stable"
-          echo $SNAPCRAFT_LOGIN_CREDENTIALS | base64 --decode > /home/builder/snapcraft-login-credentials
-          snapcraft login --with /home/builder/snapcraft-login-credentials
-      - name: Create a snap
-        script: snapcraft snap --output api-mocker-gateway.snap
+          snapcraft snap --output api-mocker-gateway.snap
       - name: Upload and release
         script: snapcraft upload api-mocker-gateway.snap
   Windows-Microsoft-Store-Release:
@@ -104,7 +105,7 @@ workflows:
       - name: Fetch Mac App Distribution certificate and Mac App Store profile
         script: |
           app-store-connect fetch-signing-files \
-            "$BUNDLE_ID" \
+            $BUNDLE_ID \
             --platform MAC_OS \
             --type MAC_APP_STORE \
             --create
