@@ -1,9 +1,9 @@
 workflows:
-  Linux-Snapcraft-Release:
-    name: Linux Snapcraft Release
+  Linux-Snap-Store-Release:
+    name: Linux Snap Store Release
     working_directory: src/app
     instance_type: linux
-    max_build_duration: 5
+    max_build_duration: 15
     labels:
       - Public release
     triggering:
@@ -23,17 +23,21 @@ workflows:
     scripts:
       - name: Authenticate with Snap Store
         script: |
+          export APP_VERSION=$(echo $CM_TAG | sed "s/-release\|-linux//g")
+          export APP_GRADE="stable"
           echo $SNAPCRAFT_LOGIN_CREDENTIALS | base64 --decode > /home/builder/snapcraft-login-credentials
           snapcraft login --with /home/builder/snapcraft-login-credentials
       - name: Create a snap
         script: snapcraft snap --output api-mocker-gateway.snap
       - name: Upload and release
-        script: snapcraft upload api-mocker-gateway.snap --release stable
+        script: snapcraft upload api-mocker-gateway.snap
   Windows-Microsoft-Store-Release:
     name: Windows Microsoft Store Release
     working_directory: src/app
     instance_type: windows_x2
-    max_build_duration: 5
+    max_build_duration: 15
+    labels:
+      - Public release
     triggering:
       events:
         - tag
@@ -74,7 +78,9 @@ workflows:
     name: macOS App Store Release
     working_directory: src/app
     instance_type: mac_mini_m1
-    max_build_duration: 5
+    max_build_duration: 15
+    labels:
+      - Public release
     triggering:
       events:
         - tag
@@ -118,7 +124,8 @@ workflows:
           find . -name "Podfile" -execdir pod install \;
       - name: Build Flutter macOS
         script: |
-          flutter build macos --release
+          export APP_VERSION=$(echo $CM_TAG | sed "s/-release\|-mac//g")
+          flutter build macos --release --build-name=$APP_VERSION --build-number=0
       - name: Package macOS application
         script: |
           set -x
