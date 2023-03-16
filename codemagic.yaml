@@ -29,6 +29,8 @@ workflows:
         - MICROSOFT_STORE_CREDENTIALS
       flutter: 3.7.6
     scripts:
+      - name: Get Flutter packages
+        script: flutter packages pub get
       - name: Package Windows
         script: |
           echo $TENANT_ID
