@@ -50,6 +50,7 @@ workflows:
           echo "CM_TAG: $CM_TAG"
           $APP_VERSION = $CM_TAG -replace '-release|-windows',''
           echo "APP_VERSION: $APP_VERSION"
+          gci env:* | sort-object name
       - name: Get Flutter packages
         script: flutter packages pub get
       - name: Package Windows
