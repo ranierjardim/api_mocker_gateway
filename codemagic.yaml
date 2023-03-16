@@ -24,6 +24,8 @@ workflows:
       - name: Authenticate with Snap Store
         script: |
           export APP_VERSION=$(echo $CM_TAG | sed "s/-release\|-linux//g")
+          echo "CM_TAG: $CM_TAG"
+          echo "APP_VERSION: $APP_VERSION"
           export APP_GRADE="stable"
           echo $SNAPCRAFT_LOGIN_CREDENTIALS | base64 --decode > /home/builder/snapcraft-login-credentials
           snapcraft login --with /home/builder/snapcraft-login-credentials
@@ -102,7 +104,7 @@ workflows:
       - name: Fetch Mac App Distribution certificate and Mac App Store profile
         script: |
           app-store-connect fetch-signing-files \
-            "com.ranierjardim.amg" \
+            "$BUNDLE_ID" \
             --platform MAC_OS \
             --type MAC_APP_STORE \
             --create
