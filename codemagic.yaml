@@ -1,5 +1,5 @@
 workflows:
-  Linux-release:
+  Linux-Snapcraft-Release:
     name: Linux Snapcraft Release
     working_directory: src/app
     instance_type: linux
@@ -29,8 +29,8 @@ workflows:
         script: snapcraft snap --output api-mocker-gateway.snap
       - name: Upload and release
         script: snapcraft upload api-mocker-gateway.snap --release stable
-  Windows-workflow:
-    name: Windows MS Store Release
+  Windows-Microsoft-Store-Release:
+    name: Windows Microsoft Store Release
     working_directory: src/app
     instance_type: windows_x2
     max_build_duration: 5
@@ -70,8 +70,8 @@ workflows:
         notify:
           success: true
           failure: true
-  macOS-workflow:
-    name: macOS App Store Workflow
+  macOS-App-Store-Release:
+    name: macOS App Store Release
     working_directory: src/app
     instance_type: mac_mini_m1
     max_build_duration: 5
