@@ -45,16 +45,14 @@ workflows:
         - MICROSOFT_STORE_CREDENTIALS
       flutter: 3.7.6
     scripts:
-      - name: Prepare build version
+      - name: Get Flutter packages
+        script: flutter packages pub get
+      - name: Package Windows
         script: |
           $CM_TAG = [System.Environment]::GetEnvironmentVariable('CM_TAG')
           echo "CM_TAG: $CM_TAG"
           $APP_VERSION = $CM_TAG -replace '-release|-windows',''
           echo "APP_VERSION: $APP_VERSION"
-      - name: Get Flutter packages
-        script: flutter packages pub get
-      - name: Package Windows
-        script: |
           flutter pub run msix:create --version "$APP_VERSION.0"
     artifacts:
       - build/windows/**/*.msix
