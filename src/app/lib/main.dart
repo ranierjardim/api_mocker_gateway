@@ -45,13 +45,15 @@ Future<dynamic> requestHandler(HttpRequest req, HttpResponse res) async {
           return endpoint['body']['content'];
         }
       }
-      final Map<String, dynamic> reqHeaders = {};
-      req.headers.forEach((name, values) {
-        reqHeaders.addAll({name: values.join(",")});
-      });
-      print('reqHeaders: $reqHeaders');
       final serverUrl = document['url'];
       print('serverUrl: $serverUrl');
+      final Map<String, dynamic> reqHeaders = {};
+      req.headers.forEach((name, values) {
+        if(name != 'host') {
+          reqHeaders.addAll({name: values.join(",")});
+        }
+      });
+      print('reqHeaders: $reqHeaders');
       final requestUrl = '$serverUrl${requestPath ?? ''}';
       print('url: $requestUrl');
       dynamic body;
