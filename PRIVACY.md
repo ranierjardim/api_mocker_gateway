@@ -1,1 +1,1 @@
-This app doesn't ANY user info or request made into.
+This app doesn't get or fetch ANY user info or request made into.
