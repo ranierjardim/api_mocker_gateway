@@ -1,0 +1,1 @@
+This app doesn't ANY user info or request made into.
