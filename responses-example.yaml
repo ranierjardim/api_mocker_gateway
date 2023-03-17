@@ -1,0 +1,33 @@
+#
+#   API Mocker Gateway responses file example
+#
+#   To use this config file, download the client in
+#   https://github.com/ranierjardim/api_mocker_gateway
+#   Available for Windows, Mac & Linux
+#
+#   This file is set to mock only the https://catfact.ninja/fact API,
+#   to test, open http://localhost:3000/fact in your browser
+#
+
+url: 'https://catfact.ninja'
+
+endpoints:
+
+  - # INTERNAL ERROR
+    endpoint: "/fact"
+    method: "GET"
+    enabled: false # TO ENABLE A MOCK ERROR, SET THIS TO TRUE
+    code: 500
+    body:
+      type: "json"
+      content: "false"
+
+
+  - # STATIC RESPONSE
+    endpoint: "/fact"
+    method: "GET"
+    enabled: false # TO ENABLE A STATIC RESPONSE, SET THIS TO TRUE
+    code: 200
+    body:
+      type: "json"
+      content: "{\"fact\": \"Cats have 32 muscles that control the outer ear (compared to human's 6 muscles each). A cat can rotate its ears independently 180 degrees, and can turn in the direction of sound 10 times faster than those of the best watchdog.\",\"length\": 226}"
