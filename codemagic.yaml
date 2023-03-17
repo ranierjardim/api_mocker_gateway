@@ -34,6 +34,13 @@ workflows:
           snapcraft snap --output api-mocker-gateway.snap
       - name: Upload and release
         script: snapcraft upload api-mocker-gateway.snap
+    publishing:
+      email:
+        recipients:
+          - ranierjardim@gmail.com
+        notify:
+          success: true
+          failure: true
   Windows-Microsoft-Store-Release:
     name: Windows Microsoft Store Release
     working_directory: src/app
