@@ -102,5 +102,5 @@ msix_config:
   store: true
   execution_alias: api-mocker-gateway
   publisher: CN=D50ABDC9-4740-40BB-9575-588CF45EF547
-  logo_path: ./windows/runner/resources/app_icon.ico
+  logo_path: ./windows/runner/resources/installer_icon.png
   capabilities: internetClientServer, removableStorage
