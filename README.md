@@ -5,7 +5,7 @@
 	<a href="https://apps.apple.com/br/app/api-mocker-gateway/id6446056234">
 		<img src="marketing/app_store_badge.svg"  height="50px"/>
 	</a>
-	<a href="https://www.microsoft.com/store/apps/9NVD2K8CB7RG">
+	<a href="https://apps.microsoft.com/store/detail/api-mocker-gateway/9NVD2K8CB7RG">
 		<img src="marketing/microsoft_store_badge.svg" height="50px"/>
 	</a>
 	<a href="https://snapcraft.io/api-mocker-gateway">
