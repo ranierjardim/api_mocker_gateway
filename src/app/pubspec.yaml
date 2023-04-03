@@ -33,6 +33,7 @@ dependencies:
   stubble: ^1.1.0
   accept_language_parser: ^1.0.1
   alfred: ^1.0.0+1
+  path_to_regexp: ^0.4.0
   flutter:
     sdk: flutter
 

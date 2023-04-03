@@ -5,6 +5,7 @@ import 'package:alfred/alfred.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart' as dio;
+import 'package:path_to_regexp/path_to_regexp.dart';
 import 'package:yaml/yaml.dart';
 
 String? currentFile;
@@ -33,11 +34,12 @@ Future<dynamic> requestHandler(HttpRequest req, HttpResponse res) async {
       final requestPath = req.requestedUri.path;
       print('requestPath: $requestPath');
       for (final endpoint in document['endpoints']) {
-        if (endpoint['endpoint'] == requestPath &&
+        final regExp = pathToRegExp(endpoint['endpoint']);
+        if (regExp.hasMatch(requestPath) &&
             endpoint['method'].toLowerCase() == req.method.toLowerCase() &&
             endpoint['enabled'] as bool) {
           res.statusCode = endpoint['code'] as int;
-          if (endpoint["body"]["content"].toLowerCase() == "json") {
+          if (endpoint["body"]["type"].toLowerCase() == "json") {
             res.setContentTypeFromExtension('json');
           } else {
             res.setContentTypeFromExtension('text');
