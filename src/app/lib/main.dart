@@ -39,7 +39,10 @@ Future<dynamic> requestHandler(HttpRequest req, HttpResponse res) async {
             endpoint['method'].toLowerCase() == req.method.toLowerCase() &&
             endpoint['enabled'] as bool) {
           res.statusCode = endpoint['code'] as int;
-          if (endpoint["body"]["type"].toLowerCase() == "json") {
+
+          if (endpoint["body"]["type"].toLowerCase() == "byte") {
+            res.setContentTypeFromExtension('bin');
+          } else if (endpoint["body"]["type"].toLowerCase() == "json") {
             res.setContentTypeFromExtension('json');
           } else {
             res.setContentTypeFromExtension('text');
